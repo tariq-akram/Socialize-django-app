@@ -21,14 +21,14 @@ socialize is a Python web application built using Django, designed to manage pos
 ## Setup Instructions
 
 ### Prerequisites:
-- Python 3.x installed.
+- Python 3 installed.
 - pip package manager.
 
 ### Installation:
 
 1. **Clone the Repository**:
     ```bash
-    git clone <repository_url>
+    git clone <[repository_url](https://github.com/tariq-akram/Socialize-django-app.git)>
     cd socializeProject
     ```
 
