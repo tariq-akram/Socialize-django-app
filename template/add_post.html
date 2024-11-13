@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block head %}
+<title>Add New Post</title>
+<!-- Link to Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Custom styling */
+    .container {
+        max-width: 600px;
+        margin-top: 50px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Add New Post</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea name="content" id="content" rows="5" required class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+    </div>
+
+    <!-- Optional: Add a scroll to top button using JavaScript -->
+    <button onclick="topFunction()" id="myBtn" class="btn btn-primary" title="Go to top">Top</button>
+
+    <script>
+        // JavaScript for scroll to top button
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+{% endblock body %}

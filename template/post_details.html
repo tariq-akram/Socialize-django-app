@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block head %}
+<title>{{ post.title }}</title>
+<!-- Link to Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Custom styling */
+    .container {
+        max-width: 900px;
+        margin-top: 50px;
+    }
+    .comment {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
+    .comment p {
+        margin: 5px 0;
+    }
+    .comment .user {
+        font-weight: bold;
+    }
+    h3 {
+        margin-top: 30px;
+    }
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .no-comments {
+        color: #999;
+        font-style: italic;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <hr>
+
+        <h3>Comments</h3>
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment">
+                    <p class="user">{{ comment.user.username }}:</p>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-comments">No comments yet.</p>
+        {% endif %}
+        
+        <h3>Add a Comment</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="content" rows="4" placeholder="Enter your comment here" required></textarea><br>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </div>
+
+    <!-- Optional: Add a scroll to top button using JavaScript -->
+    <button onclick="topFunction()" id="myBtn" class="btn btn-primary" title="Go to top">Top</button>
+
+    <script>
+        // JavaScript for scroll to top button
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+{% endblock body %}

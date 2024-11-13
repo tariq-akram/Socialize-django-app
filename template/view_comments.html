@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block head %}
+<title>View Comments</title>
+<!-- Link to Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Custom styling */
+    .container {
+        max-width: 900px;
+        margin-top: 40px;
+    }
+    .comment {
+        padding: 15px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .comment p {
+        margin: 10px 0;
+    }
+    .comment-header {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+    .comment-content {
+        font-size: 1rem;
+        color: #333;
+    }
+    .post-title {
+        font-style: italic;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">All Comments</h2>
+
+        {% if comments %}
+            {% for comment in comments %}
+            <div class="comment">
+                <p class="comment-header">{{ comment.user.username }} commented on <em class="post-title">{{ comment.post.title }}</em></p>
+                <p class="comment-content">{{ comment.content }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No comments available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Optional: Add a scroll to top button using JavaScript -->
+    <button onclick="topFunction()" id="myBtn" class="btn btn-primary" title="Go to top">Top</button>
+
+    <script>
+        // JavaScript for scroll to top button
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+{% endblock body %}

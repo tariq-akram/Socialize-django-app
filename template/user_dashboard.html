@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% load static %}
+{% block head %}
+<!-- Link to Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Custom CSS for additional styling */
+    .post {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .post h3 {
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+    .post p {
+        font-size: 1rem;
+        color: #555;
+    }
+    .button {
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">User Dashboard</h2>
+        
+        <!-- Display posts with Bootstrap card style -->
+        {% for post in posts %}
+        <div class="post card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                <a href="{% url 'post_detail' post.id %}" class="button">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Optional: Add a scroll to top button using JavaScript -->
+    <button onclick="topFunction()" id="myBtn" class="btn btn-primary" title="Go to top">Top</button>
+    
+    <script>
+        // JavaScript for scroll to top button
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+{% endblock body %}
