@@ -28,7 +28,7 @@ socialize is a Python web application built using Django, designed to manage pos
 
 1. **Clone the Repository**:
     ```bash
-    git clone <[repository_url](https://github.com/tariq-akram/Socialize-django-app.git)>
+    git clone <https://github.com/tariq-akram/Socialize-django-app.git>
     cd socializeProject
     ```
 
